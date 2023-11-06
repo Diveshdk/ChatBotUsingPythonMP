@@ -7,7 +7,7 @@ import webbrowser
 import datetime
 
 print("Hey.I am Your Voice Assistant")
-my_secret = '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'
+my_secret = 'API_KEY_HERE'
 
 openai.api_key = my_secret
 
