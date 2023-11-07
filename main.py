@@ -6,7 +6,54 @@ import pywhatkit
 import webbrowser
 import datetime
 import websites
+import pyautogui
 
+def sys_ops_select():
+    pyautogui.hotkey('ctrl', 'a')
+
+def sys_ops_copy():
+    pyautogui.hotkey('ctrl', 'c')
+
+def sys_ops_paste():
+    pyautogui.hotkey('ctrl', 'v')
+
+def sys_ops_delete():
+    pyautogui.press('delete')
+
+def sys_ops_new_file():
+    pyautogui.hotkey('ctrl', 'n')
+
+def tab_ops_switchTab():
+    pyautogui.hotkey('ctrl', 'tab')
+
+def tab_ops_closeTab():
+    pyautogui.hotkey('ctrl', 'w')
+
+def tab_ops_newTab():
+    pyautogui.hotkey('ctrl', 't')
+
+def win_ops_closeWindow():
+    pyautogui.hotkey('alt', 'f4')
+
+def win_ops_switchWindow():
+    pyautogui.hotkey('alt', 'tab')
+
+def win_ops_minimizeWindow():
+    pyautogui.hotkey('win', 'd')
+
+def win_ops_maximizeWindow():
+    pyautogui.hotkey('win', 'up')
+
+def win_ops_Screen_Shot():
+    pyautogui.hotkey('printscreen')
+
+
+listener = sr.Recognizer()
+engine = pyttsx3.init()
+
+def talk(text):
+    engine.say(text)
+    engine.runAndWait()
 
 def open_specified_website(query):
     websites_dict = {
@@ -34,8 +81,9 @@ def open_specified_website(query):
         return False
 
 
-print("Hey.I am Your Voice Assistant")
-my_secret = 'API_KEY_HERE'
+print("Hey.I am Your Voice Assistant.What can i do for you?")
+talk("Hey.I am Your Voice Assistant.What can i do for you?")
+my_secret = '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'
 
 openai.api_key = my_secret
 
@@ -69,8 +117,57 @@ def main():
 
     elif 'Google' in user_input:
        webbrowser.open("https://www.google.com/")
+    
+    elif 'time' in user_input:
+       time = datetime.datetime.now().strftime('%I:%M')
+       print(time)
+       talk('current time is ' + time)
 
-    elif 'quit' in user_input:
+    elif 'previous' in user_input:
+       webbrowser.open("muquestionpapers.com")
+
+    elif "select_text" and "select" in user_input:
+            sys_ops_select()
+            done = True
+    elif "copy_text" and "copy" in user_input:
+            sys_ops_copy()
+            done = True
+    elif "paste_text" and "paste" in user_input:
+            sys_ops_paste()
+            done = True
+    elif "delete_text" and "delete" in user_input:
+            sys_ops_delete()
+            done = True
+    elif "new_file" and "new" in user_input:
+            sys_ops_new_file()
+            done = True
+    elif  "switch_tab" and "switch" in user_input and "tab" in user_input:
+            tab_ops_switchTab()
+            done = True
+    elif "close_tab" and "close" in user_input and "tab" in user_input:
+            tab_ops_closeTab()
+            done = True
+    elif 'new_tab' and "new" in user_input and "tab" in user_input:
+            tab_ops_newTab()
+            done = True
+    elif  "close_window" and "close" in user_input:
+            win_ops_closeWindow()
+            done = True
+    elif "switch_window" and "switch" in user_input:
+            win_ops_switchWindow()
+            done = True
+    elif "minimize_window" and "minimize" in user_input:
+            win_ops_minimizeWindow()
+            done = True
+    elif "maximize_window" and "maximize" in user_input:
+            win_ops_maximizeWindow()
+            done = True
+    elif "screenshot" and "screenshot" in user_input:
+            win_ops_Screen_Shot()
+            done = True
+
+
+    elif 'stop' in user_input:
        exit()
    
     else:
