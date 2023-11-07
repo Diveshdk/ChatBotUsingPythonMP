@@ -83,7 +83,7 @@ def open_specified_website(query):
 
 print("Hey.I am Your Voice Assistant.What can i do for you?")
 talk("Hey.I am Your Voice Assistant.What can i do for you?")
-my_secret = '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'
+my_secret = 'YourAPIKey'
 
 openai.api_key = my_secret
 
